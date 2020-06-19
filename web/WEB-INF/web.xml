@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+<!--  UpFileServlet  -->
+    <servlet>
+    <servlet-name>UpFileServlet</servlet-name>
+    <servlet-class>com.rj.upload.UpFileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpFileServlet</servlet-name>
+        <url-pattern>/UpFileServlet</url-pattern>
+    </servlet-mapping>
+    <!--    DownLoad-->
+    <servlet>
+        <servlet-name>DownLoad</servlet-name>
+        <servlet-class>com.rj.upload.DownLoad</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DownLoad</servlet-name>
+        <url-pattern>/DownLoad</url-pattern>
+    </servlet-mapping>
+    <!--  SmartUpFileServlet  -->
+    <servlet>
+        <servlet-name>SmartUpFileServlet</servlet-name>
+        <servlet-class>com.rj.upload.SmartUpFileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SmartUpFileServlet</servlet-name>
+        <url-pattern>/SmartUpFileServlet</url-pattern>
+    </servlet-mapping>
+<!--    SmartDownLoad-->
+    <servlet>
+        <servlet-name>SmartDownLoad</servlet-name>
+        <servlet-class>com.rj.upload.SmartDownLoad</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SmartDownLoad</servlet-name>
+        <url-pattern>/SmartDownLoad</url-pattern>
+    </servlet-mapping>
+</web-app>
