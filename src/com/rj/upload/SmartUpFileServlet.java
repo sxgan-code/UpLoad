@@ -17,12 +17,10 @@ public class SmartUpFileServlet extends HttpServlet {
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    
-    
-    
 //        设置文件路径，字符串类型后面会用，分开写
         String filePath ="E:\\JAVA\\JAVAWebPor\\UpLoad\\web\\photo";
 //        创建虚拟文件目录
+        
         File file = new File(filePath);
         if(!file.exists()){
 //             文件不存在创建文件夹
@@ -32,6 +30,8 @@ public class SmartUpFileServlet extends HttpServlet {
         SmartUpload su = new SmartUpload();
 //        初始化
         su.initialize(getServletConfig(),req,resp);
+        
+        
 //        设置单个文件最大长度限制为10MB
         su.setMaxFileSize(1024*1024*10);
 //        设定允许上传文件的总长度
@@ -46,11 +46,22 @@ public class SmartUpFileServlet extends HttpServlet {
             su.setDeniedFilesList("doc,xml");
             //上传文件
             su.upload();
+
             //接收请求参数必须在upload后方能获取到
             name = su.getRequest().getParameter("username");
             str = name+"：上传成功！";
-            //保存文件,注意是字符串地址
-            su.save(filePath);
+            //            获取多个文件
+            for( int i = 0 ;i <2 ; i++ ){
+                
+                com.jspsmart.upload.File upFile = su.getFiles().getFile(i);
+//                判断用户是否选择了文件，选择了为false
+                if(!upFile.isMissing()){
+                    String filePathName = upFile.getFilePathName();
+                    System.out.println(filePathName);
+                    //保存文件,注意是字符串地址
+                    upFile.saveAs(filePath+"\\"+"photo"+i+"."+upFile.getFileExt());
+                }
+            }
         }catch (Exception e) {
             if(name==null){
                 str="：上传失败！";
